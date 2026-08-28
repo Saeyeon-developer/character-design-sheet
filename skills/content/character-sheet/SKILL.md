@@ -42,12 +42,14 @@ Read [references/prompt-guide.md](references/prompt-guide.md) before composing t
 
 ## Inputs and reference roles
 
+Require at least one usable text brief or character identity reference before generation. A layout reference alone is insufficient; if it is the only input, ask the user for a text brief or character reference instead of inventing an identity.
+
 Accept any of these combinations:
 
 1. **Text brief only.** Normalize the description into a compact identity summary. Infer only quiet, neutral production details needed to make the sheet coherent.
 2. **One character reference.** Use it as the identity anchor. Preserve hair, face, eyes, silhouette, costume construction, accessories, shoes, and colors.
 3. **Several character references.** Choose the most complete and on-model image as the main identity anchor. Use the others to resolve missing details; do not average conflicting designs.
-4. **Layout reference.** Use it only for panel hierarchy, spacing, line treatment, paper/background treatment, and annotation style.
+4. **Layout reference with identity input.** Use it only for panel hierarchy, spacing, line treatment, paper/background treatment, and annotation style.
 
 When both character and layout references exist, identify their roles explicitly:
 
@@ -124,18 +126,22 @@ Identity drift is more severe than a missing optional three-quarter view. If the
 
 ### 6. Make at most one targeted correction
 
-If a required element is weak or missing, or identity drift is obvious, make one edit or regeneration pass. Name only the highest-impact correction and repeat the identity invariants. Preserve all correct panels and the existing layout.
+If any required QA condition is weak, missing, or otherwise fails, or identity drift is obvious, make one targeted correction pass. This includes required structure and prohibited-content checks such as a poster-like composition, unrequested characters or props, logos, or watermarks.
+
+Prefer an image edit that preserves all correct panels and the existing layout. Use regeneration only when the backend supports reference-constrained regeneration that can preserve those correct elements. Otherwise, do not replace the sheet with an unconstrained regeneration; deliver the best result with a concise note about the remaining limitation. Name only the highest-impact correction and repeat the identity invariants.
 
 Do not start a new visual concept, run an unbounded retry loop, or generate a separate replacement panel. If the correction still fails, deliver the best result with a concise note about the remaining limitation.
 
 ## Output contract
 
-Deliver one final character-sheet raster image and show it inline when the environment supports inline media. If the user requests a project asset, save the selected output in the workspace without overwriting an existing file and report its path.
+When an image-generation backend is available, deliver one final character-sheet raster image and show it inline when the environment supports inline media. If the user requests a project asset, save the selected output in the workspace without overwriting an existing file and report its path.
 
-Also report briefly:
+For a generated image, also report briefly:
 
 - whether the required views and identity consistency passed QA;
 - whether the correction pass was used; and
 - any remaining limitation, especially an illegible label or small panel.
+
+When no image-generation backend is available, return the prepared final prompt only and state explicitly that no raster image was generated. Do not claim image delivery or report visual QA and correction results as completed.
 
 Do not add a separate character bible, code pipeline, database, or external-service setup unless the user asks for it.
