@@ -3,7 +3,7 @@
 Use this form when the user's description is incomplete. Empty fields are optional. Do not invent a distinctive feature just to fill every line.
 
 ```text
-Character settei brief
+Character sheet brief
 
 Role / use:
 - e.g. animation model sheet, game character reference, OC design
