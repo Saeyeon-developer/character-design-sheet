@@ -124,7 +124,7 @@ Identity drift is more severe than a missing optional three-quarter view. If the
 
 ### 6. Make at most one targeted correction
 
-If a required element is missing or identity drift is obvious, make one edit or regeneration pass. Name only the highest-impact correction and repeat the identity invariants. Preserve all correct panels and the existing layout.
+If a required element is weak or missing, or identity drift is obvious, make one edit or regeneration pass. Name only the highest-impact correction and repeat the identity invariants. Preserve all correct panels and the existing layout.
 
 Do not start a new visual concept, run an unbounded retry loop, or generate a separate replacement panel. If the correction still fails, deliver the best result with a concise note about the remaining limitation.
 
