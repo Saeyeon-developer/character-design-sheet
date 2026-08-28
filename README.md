@@ -1,74 +1,104 @@
-# ACG Character Settei (Codex)
+# Character Sheet
 
-이 저장소의 메인 README입니다. Codex에서 `$acg-character-settei-codex` Skill을 사용해 애니메이션·게임 제작용 캐릭터 설정화 1장을 생성할 수 있습니다.
+`character-sheet` is an agent skill for generating a single production-oriented character sheet from a written brief and optional reference images. It is optimized for game, anime, and cartoon characters.
 
-## 제공 기능
+The skill creates one readable landscape image containing consistent front, side, and back views, facial expressions, design details, and a color palette. It prioritizes cross-view identity consistency over decorative presentation.
 
-- 텍스트 character brief 또는 캐릭터 reference image 입력
-- 선택적인 layout/template image 지원
-- 한 장의 가로형 anime settei sheet 생성
-- full-body front / side / back views
-- 최소 4개, 권장 6개의 표정 시트
-- hair, eyes, outfit, shoes, accessory 디테일
-- 4~8개 주요 색상의 palette swatches
-- 동일 캐릭터 유지 중심의 Master Identity Summary와 시각 QA
-- 누락이나 명확한 identity drift가 있을 때 최대 1회의 targeted correction
+## Features
 
-## 다른 agent가 사용하는 방법
+- Generates a complete character sheet from a text brief
+- Uses one or more character images as identity references
+- Accepts a separate layout image without mixing it into the character identity
+- Includes full-body front, side, and back views
+- Includes four to six expressions
+- Adds hair, eye, costume, shoe, and accessory callouts
+- Adds four to eight key color swatches
+- Performs a visual QA pass and, when needed, one targeted correction
 
-요청이 캐릭터 설정화·캐릭터 시트·정면/측면/후면 turnaround·표정 시트 생성에 해당하면 `skills/content/acg-character-settei-codex/SKILL.md`를 적용합니다.
+## Compatibility
 
-가장 간단한 호출 예시는 다음과 같습니다.
+This skill is optimized for Codex because its default workflow uses Codex's `imagegen` skill and built-in image generation tool.
+
+Other agents, including Claude and custom agents, can still use the instructions in [`SKILL.md`](skills/content/character-sheet/SKILL.md), but they must map the generation step to either:
+
+- an image-generation skill or tool available in that agent environment; or
+- an external image-generation API configured and authorized for that agent.
+
+Tool names, reference-image attachment methods, and edit workflows differ between agents. Non-Codex agents should preserve the prompt structure and QA requirements while adapting those tool-specific steps.
+
+## Best-fit use cases
+
+Use this skill for:
+
+- game character model sheets
+- anime production character sheets
+- cartoon character turnarounds
+- original-character reference sheets
+- expression and costume reference pages
+
+The workflow is designed around stylized characters. It can be used for photorealistic people, but facial likeness, anatomy, clothing continuity, and cross-view consistency may be less reliable. A photography- or identity-specialized workflow may be a better choice for realistic human sheets.
+
+Do not use this skill for a single illustration, story scene, poster, or general concept-art request that does not need multiple views.
+
+## Installation
+
+Copy the skill directory into the location your agent uses for skills, or make the agent load the included `SKILL.md` directly:
 
 ```text
-$acg-character-settei-codex
-일본풍 청소년 여성 캐릭터 설정화를 만들어줘.
-검은 긴 생머리, 붉은 리본, 흰색과 남색의 무녀풍 의상,
-차분하지만 강단 있는 성격.
-정면/측면/후면, 표정 6종, 의상 디테일, 색상 팔레트를 포함해줘.
+skills/content/character-sheet/
 ```
 
-참고 이미지가 있으면 캐릭터 identity용인지 layout용인지 구분해 설명합니다.
+For Codex, install or link that directory as a discoverable skill and invoke it as `$character-sheet`.
+
+## Quick start
 
 ```text
-첨부한 이미지는 캐릭터 identity reference야.
-헤어, 얼굴, 눈, 실루엣, 의상 구조, 액세서리, 색상을 유지해서
-정면/측면/후면과 표정 6종이 있는 한 장의 settei sheet를 만들어줘.
-흰색 배경, 짧은 라벨, 디테일 callout, 색상 팔레트를 포함해줘.
+$character-sheet
+Create a game-ready character sheet for a calm teenage shrine guardian.
+She has long straight black hair, a red ribbon, and a white-and-navy layered outfit.
+Include full-body front, side, and back views, six expressions, costume details,
+and a color palette on a clean white background.
 ```
 
-## 입력 규칙
+With a character reference:
 
-- 텍스트만 있어도 생성합니다.
-- 캐릭터 reference가 여러 장이면 가장 완성도 높고 전체 디자인을 잘 보여 주는 이미지를 main identity anchor로 사용합니다.
-- template image는 패널 배치와 스타일만 결정하며 캐릭터 identity에는 사용하지 않습니다.
-- 사용자가 지정하지 않은 무기, 로고, 장면 소품, 복잡한 배경은 추가하지 않습니다.
-- 나이감, 헤어, 얼굴, 눈, 실루엣, 의상 구조, 신발, 액세서리, 색상은 모든 view에서 고정합니다.
+```text
+$character-sheet
+Use the attached image as the character identity reference.
+Preserve the hairstyle, face, eye color, silhouette, outfit construction,
+accessories, shoes, and colors. Create one character sheet with front, side,
+and back views, six expressions, detail callouts, and a color palette.
+```
 
-## 출력 기준
+When supplying both character and layout references, label their roles clearly:
 
-최종 출력은 흰색 또는 밝은 중립 배경의 raster image 1장입니다. 한 장 안에 다음을 읽을 수 있어야 합니다.
+```text
+Image A: character identity reference. Preserve this design.
+Image B: layout reference only. Use its panel organization, not its character.
+```
 
-1. full-body FRONT
-2. full-body SIDE
-3. full-body BACK
-4. 4~6개의 표정
-5. 헤어·눈·의상·신발·액세서리 디테일
-6. 주요 색상 4~8개의 팔레트
+## Expected output
 
-예쁜 단일 일러스트보다 제작용 model sheet처럼 정보가 잘 읽히는 배치를 우선합니다. built-in image generation이 없으면 외부 이미지 API로 전환하지 않습니다.
+The default deliverable is one landscape raster image with a white or very light neutral background. It should contain:
 
-## 저장소 구성
+1. full-body `FRONT`, `SIDE`, and `BACK` views;
+2. four to six readable expressions;
+3. hair, eye, costume, shoe, and accessory details; and
+4. four to eight key color swatches.
 
-- [Skill 동작 규칙](skills/content/acg-character-settei-codex/SKILL.md)
-- [Skill 사용 가이드](skills/content/acg-character-settei-codex/README.md)
-- [Brief 템플릿](skills/content/acg-character-settei-codex/references/brief-template.md)
-- [Prompt 가이드](skills/content/acg-character-settei-codex/references/prompt-guide.md)
-- [테스트 결과](examples/character-sheet-test.png)
-- [CodeRabbit 설정](.coderabbit.yaml)
+If space is limited, the required turnaround views and identity consistency take priority over an optional three-quarter view, long labels, or decoration.
 
-## 테스트 결과
+## Repository contents
 
-3개의 reference를 사용해 생성한 예시입니다. 한 장에 front / side / back, 6개 표정, 디테일 callout, 색상 팔레트를 배치했습니다.
+- [Skill instructions](skills/content/character-sheet/SKILL.md)
+- [Skill usage guide](skills/content/character-sheet/README.md)
+- [Character brief template](skills/content/character-sheet/references/brief-template.md)
+- [Image prompt guide](skills/content/character-sheet/references/prompt-guide.md)
+- [Example output](examples/character-sheet-test.png)
+- [CodeRabbit configuration](.coderabbit.yaml)
 
-![Character settei test](examples/character-sheet-test.png)
+## Example output
+
+This example combines front, side, and back views with six expressions, detail callouts, and a color palette.
+
+![Example game, anime, or cartoon character sheet](examples/character-sheet-test.png)

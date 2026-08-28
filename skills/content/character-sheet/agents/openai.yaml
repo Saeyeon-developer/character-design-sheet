@@ -1,0 +1,7 @@
+interface:
+  display_name: "Character Sheet"
+  short_description: "Generate consistent stylized character sheets"
+  default_prompt: "Use $character-sheet to create a one-page game, anime, or cartoon character sheet from this brief."
+
+policy:
+  allow_implicit_invocation: true
