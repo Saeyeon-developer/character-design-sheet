@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
+language: "ko-KR"
+early_access: false
+
+reviews:
+  profile: "assertive"
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  review_details: true
+  review_progress: true
+  poem: false
+
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: false
+
+  path_instructions:
+    - path: "skills/**/*.md"
+      instructions: |
+        Treat SKILL.md and linked Markdown as executable agent guidance. Check
+        trigger boundaries, tool and backend restrictions, reference-image
+        handling, safety boundaries, and consistency with the repository's
+        stated workflow. Flag contradictory, unverifiable, or unnecessarily
+        broad instructions.
+
+    - path: "skills/**/agents/*.yaml"
+      instructions: |
+        Check YAML syntax, schema shape, and consistency with the corresponding
+        SKILL.md. Flag implicit-invocation or default-prompt behavior that is
+        misleading or overly broad.
+
+    - path: "README.md"
+      instructions: |
+        Verify documented paths, commands, examples, and workflow claims
+        against the repository contents. Keep the documentation concise and
+        actionable.
+
+    - path: ".coderabbit.yaml"
+      instructions: |
+        Keep this file schema-valid, minimal, and aligned with the repository's
+        Codex PR and CodeRabbit review workflow.
+
+chat:
+  auto_reply: true
