@@ -1,0 +1,7 @@
+interface:
+  display_name: "ACG Character Settei (Codex)"
+  short_description: "Generate consistent anime character settei sheets"
+  default_prompt: "Use $acg-character-settei-codex to create a one-page anime character settei sheet from this brief."
+
+policy:
+  allow_implicit_invocation: true
