@@ -34,7 +34,7 @@ User-requested worn gear or carried items may appear as part of the front and ba
 Require at least one usable text brief or character identity reference. A useful input establishes enough of the character's face, hair, body, clothing, palette, and style to produce a coherent identity.
 
 - With a text brief, preserve the supplied traits and infer only quiet details necessary for coherence.
-- With a character reference, treat it as the identity and style anchor. Always preserve the face, hair, proportions, skin tone, and other appearance traits the user wants fixed. Preserve the referenced clothing, colors, and equipment unless the user explicitly asks to replace or omit them.
+- With a character reference, treat it as the identity anchor. Use its rendering style only when the user has not supplied a separate style or layout reference. Always preserve the face, hair, proportions, skin tone, and other appearance traits the user wants fixed. Preserve the referenced clothing, colors, and equipment unless the user explicitly asks to replace or omit them.
 - When the user wants only the character's appearance and body shape, treat referenced clothing and minor accessories as non-binding. Apply the requested replacement outfit or omissions, then keep that final design consistent across all three views.
 - With multiple references, honor user-assigned roles first. Use an explicitly assigned identity reference as the primary identity anchor; if none exists, use the text brief; if neither exists, use the most complete role-unassigned character reference as a fallback. Never promote a layout, style, outfit, or supporting reference to the identity anchor.
 - A layout-only reference does not define a character. If no character brief or identity reference exists, ask for one instead of inventing the subject.
@@ -75,7 +75,7 @@ Inspect the generated image before delivery. Confirm that:
 - identity, body, hair, clothing, palette, and equipment remain consistent; and
 - no text, extra view, separate prop, callout, palette, or environmental scene appears.
 
-If visible text, an extra depiction, a missing required view, or severe identity drift appears, make at most one targeted image edit. Preserve all correct areas, identify only the failing area, and repeat the invariants above. Do not start a different visual concept or create replacement panels separately.
+If any required visual-check condition fails, including visible text, an extra depiction, an incorrect or missing view, a front/back mismatch, a close-up mismatch, an order or proportion error, or an identity, color, or equipment inconsistency, make at most one targeted image edit. Preserve all correct areas, identify only the failing area, and repeat the invariants above. Do not start a different visual concept or create replacement panels separately.
 
 If the corrected image still has a limitation, deliver the best image and mention only that limitation briefly.
 
@@ -83,6 +83,6 @@ If the corrected image still has a limitation, deliver the best image and mentio
 
 On success, show the final raster image inline when supported and add only a short completion notice. Do not include the generation prompt, character analysis, QA checklist, or other supporting text unless the user asks for it.
 
-If the user requested a project asset, follow `imagegen` save-path rules, avoid overwriting an existing file, and include the saved path in the brief notice.
+If the user requested a project asset, follow `imagegen` save-path rules in Codex and the active backend's configured storage and path-reporting rules elsewhere. Avoid overwriting an existing file and include the saved path in the brief notice.
 
 If no image-generation backend is available or generation fails, report the failure concisely. Do not substitute a prompt or text-only character sheet and do not claim that an image was produced.
