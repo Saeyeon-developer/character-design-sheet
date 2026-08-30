@@ -34,7 +34,8 @@ User-requested worn gear or carried items may appear as part of the front and ba
 Require at least one usable text brief or character identity reference. A useful input establishes enough of the character's face, hair, body, clothing, palette, and style to produce a coherent identity.
 
 - With a text brief, preserve the supplied traits and infer only quiet details necessary for coherence.
-- With a character reference, treat it as the identity and style anchor. Preserve the face, hair, proportions, skin tone, clothing construction, colors, and equipment across all three views.
+- With a character reference, treat it as the identity and style anchor. Always preserve the face, hair, proportions, skin tone, and other appearance traits the user wants fixed. Preserve the referenced clothing, colors, and equipment unless the user explicitly asks to replace or omit them.
+- When the user wants only the character's appearance and body shape, treat referenced clothing and minor accessories as non-binding. Apply the requested replacement outfit or omissions, then keep that final design consistent across all three views.
 - With multiple references, identify each image's role before generation. Use the most complete character image as the primary identity anchor and use other images only for missing details or stated style guidance.
 - A layout-only reference does not define a character. If no character brief or identity reference exists, ask for one instead of inventing the subject.
 
@@ -42,8 +43,8 @@ Ask a question only when missing information would materially change the charact
 
 ## Generation workflow
 
-1. Load and follow the `imagegen` skill. Use the built-in image generation tool by default.
-2. Inspect local reference images as required by `imagegen`, and label every supplied image by role in the generation prompt.
+1. In Codex, load and follow the `imagegen` skill and use the built-in image generation tool by default. In a non-Codex environment, map generation and editing to an available image tool or an external image-generation API that is configured and authorized for that environment.
+2. Inspect local reference images as required by the active backend, and label every supplied image by role in the generation prompt. Adapt tool names and image-attachment syntax without changing the identity, composition, or no-text requirements.
 3. Form a compact internal identity anchor covering the face, hairstyle, build, clothing construction, key colors, and requested equipment.
 4. Generate the complete three-panel sheet in one image-generation call. Do not generate or assemble the three views independently because that increases identity drift.
 5. Preserve the user's requested or referenced visual style. If no style is supplied, use a clean production character-reference aesthetic with restrained, even studio lighting.

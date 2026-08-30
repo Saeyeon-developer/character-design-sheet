@@ -1,7 +1,7 @@
 interface:
   display_name: "Character Sheet Simple"
-  short_description: "Generate simple text-free character sheets"
-  default_prompt: "Use $character-sheet-simple to create a text-free three-panel character sheet from this character brief."
+  short_description: "Generate realistic three-panel character sheets"
+  default_prompt: "Use $character-sheet-simple for a realistic person or intentionally minimal character reference with only front, back, and face views; use $character-sheet when side views, expressions, or palettes are required."
 
 policy:
   allow_implicit_invocation: true
