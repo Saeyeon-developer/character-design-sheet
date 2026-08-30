@@ -1,0 +1,7 @@
+interface:
+  display_name: "Character Sheet Simple"
+  short_description: "Generate simple text-free character sheets"
+  default_prompt: "Use $character-sheet-simple to create a text-free three-panel character sheet from this character brief."
+
+policy:
+  allow_implicit_invocation: true
