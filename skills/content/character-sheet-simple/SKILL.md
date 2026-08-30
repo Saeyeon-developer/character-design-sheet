@@ -36,7 +36,7 @@ Require at least one usable text brief or character identity reference. A useful
 - With a text brief, preserve the supplied traits and infer only quiet details necessary for coherence.
 - With a character reference, treat it as the identity and style anchor. Always preserve the face, hair, proportions, skin tone, and other appearance traits the user wants fixed. Preserve the referenced clothing, colors, and equipment unless the user explicitly asks to replace or omit them.
 - When the user wants only the character's appearance and body shape, treat referenced clothing and minor accessories as non-binding. Apply the requested replacement outfit or omissions, then keep that final design consistent across all three views.
-- With multiple references, identify each image's role before generation. Use the most complete character image as the primary identity anchor and use other images only for missing details or stated style guidance.
+- With multiple references, honor user-assigned roles first. Preserve an explicitly assigned identity reference as the primary identity anchor, and use layout, style, outfit, or supporting references only for their stated purposes. Choose the most complete character image as the primary identity anchor only when the user has not assigned an identity role.
 - A layout-only reference does not define a character. If no character brief or identity reference exists, ask for one instead of inventing the subject.
 
 Ask a question only when missing information would materially change the character. Do not invent a name, logo, weapon, accessory, or elaborate setting.
