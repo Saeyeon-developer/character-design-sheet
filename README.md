@@ -128,3 +128,7 @@ For Codex, install or link the desired directory as a discoverable skill, then i
 - [`character-sheet-simple` instructions](skills/content/character-sheet-simple/SKILL.md)
 - [`character-sheet` example output](examples/character-sheet-test.png)
 - [`character-sheet-simple` example output](examples/character-sheet-simple-reference.png)
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE). This includes the example images in `examples/`, which are AI-generated and depict fictional characters.
