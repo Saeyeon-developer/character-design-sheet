@@ -85,7 +85,11 @@ This example combines front, side, and back views with six expressions, detail c
 2. A straight-on front body view cropped from the base of the neck to the feet.
 3. A straight-on rear body view with the same crop, pose, scale, clothing, and equipment.
 
-The face close-up is the only facial reference on the sheet. Both body views use the neck crop during generation.
+### Automatic framing
+
+The skill automatically crops both body views at the base of the neck during generation, keeping the head and upper neck out of frame. It checks both crops and makes one targeted correction if needed. The sheet is ready to use as a reference without manual retouching.
+
+The close-up gives video models a single, detailed reference for the character's face. The front and rear body views show the character's proportions, clothing, and shoes.
 
 ### Why the sheet is intentionally simple
 
@@ -95,7 +99,7 @@ Game, anime, and comic characters are often designed with much more visual compl
 
 ### Example output
 
-This sheet uses a generated full-length portrait of a fictional adult college student as its identity reference. The final sheet shows her neutral face close-up on the left, her front body view in the center, and her rear body view on the right. Both body views are cropped at the base of the neck and show the same outfit down to the shoes. [View the source portrait](examples/college-student-reference.png).
+The skill used a generated full-length portrait of a fictional adult college student as its identity reference. During its visual check, the skill tightened the crop on both body views to the base of the neck. [View the source portrait](examples/college-student-reference.png).
 
 ![Three-view character sheet of a fictional college student with a neutral front-facing face close-up and matching front and rear body views cropped at the neck](examples/college-student-sheet.png)
 
