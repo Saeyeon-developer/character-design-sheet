@@ -79,6 +79,9 @@ This example combines front, side, and back views with six expressions, detail c
 
 ## `character-sheet-simple`
 
+> [!NOTE]
+> As AI models get better at interpreting visual references, `character-sheet-simple` can deliver better results even for animated characters with intricate accessories. Try it as your default skill for creating character sheets.
+
 `character-sheet-simple` creates one text-free landscape reference sheet for AI video generation. From left to right, it shows:
 
 1. A straight-on face close-up with a neutral expression.
