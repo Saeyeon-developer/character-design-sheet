@@ -79,7 +79,13 @@ This example combines front, side, and back views with six expressions, detail c
 
 ## `character-sheet-simple`
 
-`character-sheet-simple` creates character sheets optimized for using real-person references in AI video generation. It deliberately includes only a full-body front view, a full-body back view, and a detailed face close-up.
+`character-sheet-simple` creates one text-free landscape reference sheet for AI video generation. From left to right, it shows:
+
+1. A straight-on face close-up with a neutral expression.
+2. A straight-on front body view cropped from the base of the neck to the feet.
+3. A straight-on rear body view with the same crop, pose, scale, clothing, and equipment.
+
+The face close-up is the only facial reference on the sheet. Both body views use the neck crop during generation.
 
 ### Why the sheet is intentionally simple
 
@@ -87,15 +93,11 @@ As video models become more capable at reasoning over references, effective char
 
 Game, anime, and comic characters are often designed with much more visual complexity than real people, so the more detailed `character-sheet` format can help preserve their consistency. However, `character-sheet-simple` can also be the better choice for a stylized character when the goal is to preserve only the character's appearance and body shape while changing the outfit or omitting minor accessories.
 
-### Recommended post-processing
-
-One recommended technique is to intentionally remove or obscure the face in the full-body front view after generating the sheet, as shown in the example below. This prevents a video model from relying on the lower-resolution face in the full-body image instead of the high-resolution face close-up, which can otherwise reduce facial detail.
-
 ### Example output
 
-In this example, the face in the full-body front view has been intentionally obscured during post-processing. The face close-up remains the sole high-detail facial reference.
+This sheet uses a generated full-length portrait of a fictional adult college student as its identity reference. The final sheet shows her neutral face close-up on the left, her front body view in the center, and her rear body view on the right. Both body views are cropped at the base of the neck and show the same outfit down to the shoes. [View the source portrait](examples/college-student-reference.png).
 
-![Example character-sheet-simple output with the front-view face intentionally obscured](examples/character-sheet-simple-reference.png)
+![Three-view character sheet of a fictional college student with a neutral front-facing face close-up and matching front and rear body views cropped at the neck](examples/college-student-sheet.png)
 
 ## Compatibility
 
@@ -127,7 +129,8 @@ For Codex, install or link the desired directory as a discoverable skill, then i
 - [Image prompt guide](skills/content/character-sheet/references/prompt-guide.md)
 - [`character-sheet-simple` instructions](skills/content/character-sheet-simple/SKILL.md)
 - [`character-sheet` example output](examples/character-sheet-test.png)
-- [`character-sheet-simple` example output](examples/character-sheet-simple-reference.png)
+- [`character-sheet-simple` example input](examples/college-student-reference.png)
+- [`character-sheet-simple` example output](examples/college-student-sheet.png)
 
 ## License
 

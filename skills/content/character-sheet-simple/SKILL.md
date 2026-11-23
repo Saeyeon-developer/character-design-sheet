@@ -1,6 +1,6 @@
 ---
 name: character-sheet-simple
-description: Generate one simple text-free character sheet containing only a full-body front view, a full-body back view, and a detailed three-quarter face close-up of the same character. Use for minimal three-panel character references; do not use for turnarounds with side views, expression sets, palettes, labels, or detail callouts.
+description: Generate a single text-free character sheet with a straight-on neutral face close-up and matching front and rear body views cropped from the base of the neck to the feet. Use for minimal three-view references of one character.
 ---
 
 # Character Sheet Simple
@@ -11,9 +11,11 @@ Create one wide landscape raster image containing exactly three consistent views
 
 Use this fixed left-to-right composition:
 
-1. **Left, about 30%:** one complete full-body front view, including the entire head and both feet.
-2. **Center, about 30%:** one complete full-body back view of the same character in the same clothing and equipment.
-3. **Right, about 40%:** one detailed three-quarter head-and-shoulders face close-up of the same character.
+1. **Left, about 40%:** one detailed, straight-on face close-up. Show the entire face and hairstyle with the head facing the camera, eyes looking straight ahead, and a neutral expression with a relaxed, closed mouth.
+2. **Center, about 30%:** one straight-on front body view framed from the base of the neck down to both feet. Keep the shoulders and both feet fully visible.
+3. **Right, about 30%:** one straight-on rear body view with the same crop, pose, scale, clothing, and equipment as the front view.
+
+Crop both body views at the base of the neck. Keep the head, face, and upper neck outside those frames. The crop should read as the edge of a photograph.
 
 Use a wide landscape canvas and a unified, plain neutral studio background. Keep the three areas visually readable without captions or decorative framing.
 
@@ -27,7 +29,7 @@ Do not add:
 - detached clothing, weapons, accessories, or other separately displayed props; or
 - a story setting, environmental scene, ornamental border, or poster treatment.
 
-User-requested worn gear or carried items may appear as part of the front and back full-body views. Do not display them again as separate objects.
+User-requested worn gear or carried items may appear as part of the front and rear body views. Do not display them again as separate objects.
 
 ## Inputs
 
@@ -52,14 +54,17 @@ Ask a question only when missing information would materially change the charact
 The generation prompt must explicitly repeat these invariants:
 
 ```text
-Create one wide landscape, text-free character reference image showing exactly the
-same character three times and nothing else. Left: complete full-body front view,
-head and feet fully visible. Center: complete full-body back view in the identical
-clothing and equipment. Right: detailed three-quarter head-and-shoulders face
-close-up. Preserve the same face, hair, build, clothing construction, colors, and
-equipment in all three views. Use a unified plain neutral studio background. No
-text, letters, numbers, labels, logos, watermark, side view, extra pose, expression
-grid, palette, callout, detached prop, border, or story scene.
+Create one wide, text-free landscape reference image with exactly three views of
+the same character. Left (40%): detailed straight-on face close-up with the entire
+face and hairstyle visible, eyes looking straight ahead, and a neutral expression
+with a relaxed, closed mouth. Center (30%): straight-on front body view. Right
+(30%): straight-on rear body view. Frame both body views from the base of the neck
+to the feet, with the shoulders and both feet visible. Use a clean camera crop at
+the top of each body view, leaving the head, face, and upper neck out of frame.
+Match the body views in pose, scale, build, clothing construction, colors, and
+equipment. Use a unified plain neutral studio background. No text, letters,
+numbers, labels, logos, watermark, side view, extra pose, expression grid, palette,
+callout, detached prop, border, or story scene.
 ```
 
 Add the user's identity and style details to this structure without weakening or expanding the three-view contract.
@@ -69,10 +74,10 @@ Add the user's identity and style details to this structure without weakening or
 Inspect the generated image before delivery. Confirm that:
 
 - there are exactly three character depictions in the required order and proportions;
-- the front view includes the complete head and feet;
-- the back view is genuinely rear-facing and matches the front outfit;
-- the right panel is a detailed three-quarter face close-up;
-- identity, body, hair, clothing, palette, and equipment remain consistent; and
+- the left panel shows the entire face and hairstyle straight on, with a neutral expression;
+- the center view faces forward and the right view faces directly backward;
+- both body views are cropped at the base of the neck, with shoulders and feet fully visible and no head, face, or upper neck in frame;
+- both body views match in pose, scale, build, clothing, colors, and equipment, and the face close-up matches the character's identity; and
 - no text, extra view, separate prop, callout, palette, or environmental scene appears.
 
 If any required visual-check condition fails, including visible text, an extra depiction, an incorrect or missing view, a front/back mismatch, a close-up mismatch, an order or proportion error, or an identity, color, or equipment inconsistency, make at most one targeted image edit. Preserve all correct areas, identify only the failing area, and repeat the invariants above. Do not start a different visual concept or create replacement panels separately.
